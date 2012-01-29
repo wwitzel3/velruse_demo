@@ -6,9 +6,9 @@ Getting Started
 
 - cd <directory containing this file>
 
-- $venv/bin/python setup.py develop
+- $venv/bin/pip install -r requirements.txt
 
-- $venv/bin/populate_demo development.ini
+- Edit development.int to match your keys and end_point
 
 - $venv/bin/pserve development.ini
 
