@@ -1,0 +1,1 @@
+web: pserve --daemon local.ini

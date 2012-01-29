@@ -1,0 +1,35 @@
+Beaker==1.6.2
+Chameleon==2.7.3
+FormEncode==1.2.4
+Mako==0.6.0
+MarkupSafe==0.15
+Paste==1.7.5.1
+PasteDeploy==1.5.0
+PasteScript==1.7.5
+PyYAML==3.10
+Pygments==1.4
+Routes==1.12.3
+SQLAlchemy==0.7.4
+WebOb==1.2b2
+certifi==0.0.7
+chardet==1.0.1
+demo==0.0
+httplib2==0.7.2
+nose==1.1.2
+oauth2==1.5.211
+pyramid==1.3a6
+pyramid-debugtoolbar==0.9.8
+pyramid-tm==0.3
+python-openid==2.2.5
+repoze.lru==0.4
+-e git+https://github.com/kennethreitz/requests.git@e6959412aa7f0d54e01d9448a90da84de1fec0f2#egg=requests-dev
+requests-oauth==0.3.0
+transaction==1.2.0
+translationstring==0.4
+-e git+https://github.com/bbangert/velruse.git@e81ea007aaca0fe541f1f59659789bf4748f4c96#egg=velruse-dev
+venusian==1.0a2
+waitress==0.7
+wsgiref==0.1.2
+zope.deprecation==3.5.0
+zope.interface==3.8.0
+zope.sqlalchemy==0.7
