@@ -4,11 +4,13 @@
 </form>
 <a class="fb-button" href="javascript:document.facebook.submit();">&nbsp;</a>
 </div>
+<!--
 <div class="span8">
 <form name="twitter" action="/auth/twitter/login" method="get">
 </form>
 <a class="twitter-button" href="javascript:document.twitter.submit();">&nbsp;</a>
 </div>
+-->
 </div>
 
 <div class="row">

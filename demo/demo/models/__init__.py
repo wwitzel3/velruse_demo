@@ -5,7 +5,6 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
 from zope.sqlalchemy import ZopeTransactionExtension
-from velruse.store.sqlstore import SQLBase
 
 DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
@@ -14,8 +13,6 @@ def initialize_sql(engine):
     DBSession.configure(bind=engine)
     Base.metadata.bind = engine
     Base.metadata.create_all(engine)
-    SQLBase.metadata.bind = engine
-    SQLBase.metadata.create_all(engine)
 
     return DBSession
 

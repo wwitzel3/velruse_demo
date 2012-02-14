@@ -52,11 +52,9 @@ class User(Base):
             setattr(self, k, v)
 
     @classmethod
-    def social(cls, *args, **kwargs):
+    def social(cls, profile, credentials):
         # Grab out passed in values from end_point callback
-        profile = kwargs.get('profile')
         provider = profile.get('accounts')[0]
-        credentials = kwargs.get('credentials')
         identifier = sha1(provider.get('userid') + SALT).hexdigest()
 
         # Check if we already have a user with that identity?

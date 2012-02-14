@@ -28,12 +28,9 @@ def index(request):
     renderer='json',
 )
 def auth_complete_view(context, request):
-    token = context.credentials.get('oauthAccessToken')
-    user = M.User.by_auth_token(token)
-    if not user:
-        user = M.User.create_social(context.profile, context.credentials)
-        M.DBSession.add(user)
-        M.DBSession.flush()
+    user = M.User.social(profile=context.profile, credentials=context.credentials)
+    M.DBSession.add(user)
+    M.DBSession.flush()
     headers = remember(request, user.id)
     return HTTPFound(location=route_url('user.profile', request,
                      username=user.username), headers=headers)

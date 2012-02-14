@@ -39,12 +39,16 @@ def main(global_config, **settings):
 
     ## Velruse Auth
     config.include('velruse.providers.facebook')
-    config.include('velruse.providers.twitter')
+#    config.include('velruse.providers.twitter')
 
     config.add_facebook_login(
         settings['velruse.facebook.app_id'],
         settings['velruse.facebook.app_secret'],
         settings['velruse.facebook.scope'])
+
+#    config.add_twitter_login(
+#        settings['velruse.twitter.consumer_key'],
+#        settings['velruse.twitter.consumer_secret'])
 
     config.scan('.views')
     config.add_static_view('static', 'demo:static')
