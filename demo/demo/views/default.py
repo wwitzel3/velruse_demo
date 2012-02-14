@@ -28,10 +28,15 @@ def index(request):
     renderer='json',
 )
 def auth_complete_view(context, request):
-    return {
-        'profile':context.profile,
-        'credentials':context.credentials,
-        }
+    token = context.credentials.get('oauthAccessToken')
+    user = M.User.by_auth_token(token)
+    if not user:
+        user = M.User.create_social(context.profile, context.credentials)
+        M.DBSession.add(user)
+        M.DBSession.flush()
+    headers = remember(request, user.id)
+    return HTTPFound(location=route_url('user.profile', request,
+                     username=user.username), headers=headers)
 
 @view_config(route_name='signup', renderer='default/login.mako')
 def signup(request):
@@ -65,17 +70,6 @@ def signup(request):
             headers = remember(request, user.id)
             return HTTPFound(location=route_url('user.profile', request,
                              username=user.username), headers=headers)
-    elif 'token' in request.params:
-        key = request.params.get('token')
-        storage = M.DBSession.query(KeyStorage).get(key)
-        values = json.loads(storage.value)
-        user = M.User.social(**values)
-        if user:
-            M.DBSession.add(user)
-            M.DBSession.flush()
-            headers = remember(request, user.id)
-            return HTTPFound(location=route_url('user.profile', request,
-                username=user.username), headers=headers)
 
     return dict(
         signup_form=signup_form,
