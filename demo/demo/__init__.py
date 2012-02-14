@@ -30,7 +30,7 @@ def main(global_config, **settings):
     )
     config.begin()
     ## Database
-    config.scan('demo.models')
+    config.scan('.models')
     M.initialize_sql(engine)
 
     ## Routing & Views
@@ -41,7 +41,12 @@ def main(global_config, **settings):
     config.include('velruse.providers.facebook')
     config.include('velruse.providers.twitter')
 
-    config.scan('demo.views')
+    config.add_facebook_login(
+        settings['velruse.facebook.app_id'],
+        settings['velruse.facebook.app_secret'],
+        settings['velruse.facebook.scope'])
+
+    config.scan('.views')
     config.add_static_view('static', 'demo:static')
 
     config.end()

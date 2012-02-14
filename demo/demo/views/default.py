@@ -1,3 +1,5 @@
+from velruse.api import login_url
+
 from velruse.store.sqlstore import KeyStorage
 
 from pyramid.httpexceptions import HTTPFound
@@ -21,12 +23,22 @@ import demo.schema as S
 def index(request):
     return dict(userid=unauthenticated_userid(request))
 
-@view_config(route_name='login', renderer='default/login.mako')
-def login(request):
-    login_form = render('demo:templates/widgets/login.mako', {},
-            request=request)
-    signup_form = render('demo:templates/widgets/signup.mako', {},
-            request=request)
+@view_config(
+    context='velruse.api.AuthenticationComplete',
+    renderer='json',
+)
+def auth_complete_view(context, request):
+    return {
+        'profile':context.profile,
+        'credentials':context.credentials,
+        }
+
+@view_config(route_name='signup', renderer='default/login.mako')
+def signup(request):
+    login_form = render('demo:templates/widgets/login.mako',
+            {'login_url':login_url}, request=request)
+    signup_form = render('demo:templates/widgets/signup.mako',
+            {'login_url':login_url}, request=request)
 
     if 'form.login' in request.params:
         try:
@@ -82,6 +94,6 @@ def forbidden(request):
 
 def default_routes(config):
     config.add_route('index', '')
-    config.add_route('login', '/login')
+    config.add_route('signup', '/signup')
     config.add_route('logout', '/logout')
 

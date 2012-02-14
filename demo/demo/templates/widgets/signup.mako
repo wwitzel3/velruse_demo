@@ -1,4 +1,4 @@
-<form name='signup' action='${request.route_url('login')}' class='form-stacked' method='post'>
+<form name='signup' action='${request.route_url('signup')}' class='form-stacked' method='post'>
 <fieldset>
 <legend>Create your free account.</legend>
 <div class="clearfix">

@@ -27,7 +27,7 @@
 					% if request.user:
 					<li><a href="${request.route_url('logout')}">Logout</a></li>
 					% else:
-					<li><a href="${request.route_url('login')}">Login</a></li>
+					<li><a href="${request.route_url('signup')}">Login</a></li>
 					% endif
 				</ul>
 			</div>

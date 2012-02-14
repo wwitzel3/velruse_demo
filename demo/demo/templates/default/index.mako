@@ -34,7 +34,7 @@
 				<h2>Sign Up</h2>
 				<p>Signing up is easy, just fill out a small form you your free account will be
 				created instantly for you.</p>
-			<form action="${request.route_url('login')}" method="GET">
+			<form action="${request.route_url('signup')}" method="GET">
 			<input type="submit" class="btn primary" value="Sign Up" />
 			</form>
 			
